@@ -1,0 +1,38 @@
+<head>
+    <meta charset=utf-8/>
+    <title>Insert row in a table - w3resource</title>
+</head>
+<body>
+    <table id="sampleTable" border="1">
+    </table>
+    <br>
+    <input id="btnInsert" type="button" value="Insert row">
+    <input id="btnRemove" type="button" value="Remove row">
+
+    <script>
+        document.getElementById('btnInsert').addEventListener('click', insert)
+        document.getElementById('btnRemove').addEventListener('click', remove)
+        const $table = document.getElementById('sampleTable');
+
+        let rows = 0;
+
+        function insert() {
+            rows++;
+
+            $table.insertAdjacentHTML('beforeend', `
+                <tr>
+                    <td>Row${rows} cell1</td>
+                    <td>Row${rows} cell2</td>
+                </tr>
+            `)
+        }
+
+        function remove() {
+            if(rows > 0) {
+                rows--;
+                const trs = $table.querySelectorAll('tr');
+                trs[trs.length - 1].remove();
+            }
+        }
+    </script>
+</body>
